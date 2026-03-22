@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ClaritySense | Coming Soon</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            user-select: none;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #0a0a2a 0%, #1a0a2a 50%, #2a0a2a 100%);
+            font-family: 'Segoe UI', 'Poppins', 'Montserrat', system-ui, -apple-system, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Animované pozadí – pohyblivé světelné efekty */
+        body::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            top: -50%;
+            left: -50%;
+            background: radial-gradient(circle at 30% 40%, rgba(255, 80, 200, 0.15) 0%, rgba(128, 0, 255, 0.1) 50%, transparent 80%);
+            animation: drift 20s infinite alternate ease-in-out;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        body::after {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            top: -50%;
+            left: -50%;
+            background: radial-gradient(circle at 70% 80%, rgba(255, 100, 220, 0.12) 0%, rgba(180, 70, 255, 0.08) 60%, transparent 90%);
+            animation: driftReverse 18s infinite alternate ease-in-out;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        @keyframes drift {
+            0% {
+                transform: translate(0%, 0%) rotate(0deg);
+            }
+
+            100% {
+                transform: translate(5%, 5%) rotate(3deg);
+            }
+        }
+
+        @keyframes driftReverse {
+            0% {
+                transform: translate(0%, 0%) rotate(0deg);
+            }
+
+            100% {
+                transform: translate(-4%, 3%) rotate(-2deg);
+            }
+        }
+
+        /* Hlavní kontejner */
+        .container {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            padding: 2rem;
+            max-width: 1000px;
+            width: 90%;
+            backdrop-filter: blur(2px);
+        }
+
+        /* Název s neonovým efektem a animací */
+        .title {
+            font-size: clamp(3rem, 12vw, 6rem);
+            font-weight: 900;
+            background: linear-gradient(135deg, #ff66cc, #b84df9, #ff99ee);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: shimmer 3s linear infinite, floatText 4s ease-in-out infinite;
+            letter-spacing: -0.02em;
+            text-shadow: 0 0 15px rgba(255, 80, 200, 0.5);
+            margin-bottom: 0.5rem;
+        }
+
+        @keyframes shimmer {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        @keyframes floatText {
+            0% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-8px);
+            }
+
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+        /* Slogan – jemná pulzace */
+        .tagline {
+            font-size: clamp(1rem, 4vw, 1.6rem);
+            font-weight: 400;
+            color: #ffe0f5;
+            letter-spacing: 4px;
+            word-spacing: 6px;
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+            background: linear-gradient(120deg, #ffb3e6, #e0aaff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 8px #ff66cc;
+            animation: softPulse 2.5s infinite ease;
+        }
+
+        @keyframes softPulse {
+            0% {
+                opacity: 0.7;
+                text-shadow: 0 0 5px #ff66cc;
+            }
+
+            50% {
+                opacity: 1;
+                text-shadow: 0 0 18px #ff99ee, 0 0 5px #b84df9;
+            }
+
+            100% {
+                opacity: 0.7;
+                text-shadow: 0 0 5px #ff66cc;
+            }
+        }
+
+        /* Coming Soon – dynamický rámeček */
+        .coming-soon {
+            display: inline-block;
+            font-size: clamp(1.2rem, 5vw, 2rem);
+            font-weight: 600;
+            padding: 0.8rem 2rem;
+            margin: 1.5rem 0 2.5rem;
+            background: rgba(255, 100, 200, 0.08);
+            border: 1px solid rgba(255, 120, 220, 0.6);
+            border-radius: 60px;
+            color: #ffccf5;
+            backdrop-filter: blur(8px);
+            letter-spacing: 2px;
+            animation: borderGlow 2s infinite alternate;
+        }
+
+        @keyframes borderGlow {
+            0% {
+                border-color: rgba(255, 100, 220, 0.4);
+                box-shadow: 0 0 5px rgba(255, 80, 200, 0.3);
+            }
+
+            100% {
+                border-color: #ff88dd;
+                box-shadow: 0 0 20px rgba(255, 80, 220, 0.6);
+            }
+        }
+
+        /* Tlačítko Discord – s pohybem nahoru/dolů */
+        .discord-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            background: linear-gradient(95deg, #b84df9, #ff66cc);
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.3rem;
+            color: white;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 20px rgba(184, 77, 249, 0.3);
+            border: none;
+            cursor: pointer;
+            animation: gentleBounce 2.2s infinite ease;
+            margin-top: 1rem;
+        }
+
+        @keyframes gentleBounce {
+
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-6px);
+            }
+        }
+
+        .discord-btn:hover {
+            transform: scale(1.03) translateY(-3px);
+            background: linear-gradient(95deg, #c55eff, #ff77dd);
+            box-shadow: 0 12px 30px rgba(184, 77, 249, 0.5);
+        }
+
+        /* Jednoduchá patička – decentní */
+        .footer {
+            margin-top: 4rem;
+            font-size: 0.75rem;
+            color: #aa88cc;
+            letter-spacing: 1px;
+            opacity: 0.6;
+        }
+
+        /* Pohyblivé hvězdičky na pozadí (jen pro efekt) */
+        .star {
+            position: absolute;
+            background: radial-gradient(circle, #ffb3ff, #c07df9);
+            border-radius: 50%;
+            opacity: 0.2;
+            animation: twinkle 3s infinite alternate;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        @keyframes twinkle {
+            0% {
+                opacity: 0.05;
+                transform: scale(1);
+            }
+
+            100% {
+                opacity: 0.4;
+                transform: scale(1.2);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1 class="title">CLARITY SENSE</h1>
+        <div class="tagline">from cheaters for cheaters</div>
+        <div class="coming-soon">&nbsp;COMING SOON&nbsp;</div>
+        <div><a href="https://discord.gg/" class="discord-btn" id="discordLink">&nbsp; JOIN DISCORD &nbsp;</a></div>
+        <div class="footer">&copy; 2026 claritysense &mdash; underground precision</div>
+    </div>
+    <script>
+        // Sem později vložíš skutečný Discord invite odkaz
+        // Když založíš Discord server, zkopíruj invite link a vlož ho sem:
+        const discordInviteUrl = "https://discord.gg/";  // <--- ZDE ZMĚŇ NA SVŮJ PLATNÝ ODKAZ
+        const btn = document.getElementById("discordLink");
+        if (btn) {
+            btn.href = discordInviteUrl;
+        }
+    </script>
+    <script>
+        // Dynamické přidání pohyblivých hvězdiček na pozadí
+        function createStars() {
+            const starCount = 60;
+            for (let i = 0; i < starCount; i++) {
+                let star = document.createElement('div');
+                star.classList.add('star');
+                let size = Math.random() * 4 + 1;
+                star.style.width = size + 'px';
+                star.style.height = size + 'px';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.animationDelay = Math.random() * 3 + 's';
+                star.style.animationDuration = Math.random() * 2 + 1 + 's';
+                document.body.appendChild(star);
+            }
+        }
+        createStars();
+    </script>
+</body>
+
+</html>
